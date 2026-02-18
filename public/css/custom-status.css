@@ -1,0 +1,65 @@
+  .badge-in-progress {
+    background-color: #007bff;
+    color: white;
+}
+
+  .badge-on-hold {
+    background-color: #c0075a;
+    color: white;
+}
+
+.badge-applied {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-unconditional {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.badge-conditional {
+    background-color: #20c997;
+    color: white;
+}
+
+.badge-payment {
+    background-color: #6c757d;
+    color: white;
+}
+
+.badge-confirmation {
+    background-color: #343a40;
+    color: white;
+}
+
+.badge-documentation {
+    background-color: #5954f4; 
+    color: white;
+}
+
+.badge-visa-applied {
+    /* background-color: #ffc107; */
+    background-color: #09b883;
+    color: white;
+}
+
+.badge-visa-granted {
+    background-color: #198754;
+    color: white;
+}
+
+.badge-enrolled {
+    background-color: #990dfd;
+    color: white;
+}
+
+.badge-rejected {
+    background-color: #dc3545;
+    color: white;
+}
+
+.badge-canceled {
+    background-color: #fd7e14;
+    color: white;
+}
