@@ -22,6 +22,7 @@ use App\Http\Controllers\Agent\AgentDashboardController;
 use App\Http\Controllers\Agent\AgentHomeController;
 use App\Http\Controllers\Agent\AgentStudentController;
 use App\Http\Controllers\Agent\AgentUniversityController;
+use App\Http\Controllers\Applicant\ApplicantApplicationController;
 use App\Http\Controllers\Applicant\ApplicantCompanyController;
 use App\Http\Controllers\Applicant\ApplicantCountryController;
 use App\Http\Controllers\Applicant\ApplicantDashboardController;
@@ -246,22 +247,19 @@ Route::prefix('applicant')->middleware(['applicant'])->group(function () {
         Route::get('/my-record-list', 'myRecordList')->name('my_record_list');
         Route::get('/edit-my-record', 'editMyRecord')->name('edit_my_record');
         Route::post('/update-my-record/{id?}', 'updateMyRecord')->name('update_my_record');
-
     });
 
-    // Route for student recrord info
-    // Route::controller(StudentRecordController::class)->group(function () {
-    //     Route::get('/my-record-list', 'myRecordList')->name('my_record_list');
-    //     Route::get('/edit-my-record', 'editMyRecord')->name('edit_my_record');
-    //     Route::post('/update-my-record/{id?}', 'updateMyRecord')->name('update_my_record');
+    Route::controller(ApplicantApplicationController::class)->group(function () {
+        Route::get('/applicant-application-list', 'applicantApplicationList')->name('applicant_application_list');
+        Route::get('/applicant-application-existing-record/{job_id}/{applicant_id}', 'applicantApplicationEixRecord')->name('applicant_application_existing_record');
+        Route::post('/save-applicant-application-exit-record', 'saveApplicantApplicationEixRecord')->name('save_applicant_application_exit_record');
+    });
 
+    // Route::controller(StudentApplicationController::class)->group(function () {
+    //     Route::get('/student-application-list', 'studentApplicationList')->name('student_application_list');
+    //     Route::get('/student-application-existing-record/{course_id}/{student_id}', 'studentApplicationEixRecord')->name('student_application_existing_record');
+    //     Route::post('/save-student-application-exit-record', 'saveStudentApplicationEixRecord')->name('save_student_application_exit_record');
     // });
-
-    Route::controller(StudentApplicationController::class)->group(function () {
-         Route::get('/student-application-list', 'studentApplicationList')->name('student_application_list');
-        Route::get('/student-application-existing-record/{course_id}/{student_id}', 'studentApplicationEixRecord')->name('student_application_existing_record');
-        Route::post('/save-student-application-exit-record', 'saveStudentApplicationEixRecord')->name('save_student_application_exit_record');
-    });
 
 });
 

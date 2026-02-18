@@ -132,8 +132,8 @@ class ApplicantRecordController extends Controller
             $applicantInfo->save();
 
             // Applicant Files
-            if ($request->hasFile('studentfiles')) {
-                $applicantFiles = $request->file('studentfiles');
+            if ($request->hasFile('applicantfiles')) {
+                $applicantFiles = $request->file('applicantfiles');
                 $filenames = $request->input('filename');
 
                 foreach ($applicantFiles as $key => $single) {

@@ -77,7 +77,7 @@
             </div>
         </li>
         <li class="side-nav-item">
-            <a href="{{ route('student_application_list') }}" class="side-nav-link">
+            <a href="{{ route('applicant_application_list') }}" class="side-nav-link">
                 <span class="menu-icon"><i class="ti ti-brand-appstore"></i></span>
                 <span class="menu-text">Appplication</span>
             </a>

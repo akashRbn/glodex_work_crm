@@ -149,18 +149,12 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-md-6 text-center">
+                                                    <div class="col-md-12 text-center">
                                                         <a href="javascript:void(0);" 
                                                             class="btn btn-dark w-100 d-flex align-items-center justify-content-center" 
                                                             style="height: 60px;  font-size: 18px;"
                                                             onclick="toggleSelect('existingStudentSelect{{ $job->id }}')">
-                                                                <i class="ti ti-search me-1"></i> Existing Applicant
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-6 text-center">
-                                                        <a href="{{ route('agent_application_new_applicant', ['job_id' => $job->id]) }}" class="btn btn-success w-100 d-flex align-items-center justify-content-center"
-                                                            style="height: 60px; font-size: 18px;">
-                                                            <i class="ti ti-pencil me-1"></i> New Applicant
+                                                                <i class="ti ti-search me-1"></i> Existing Record
                                                         </a>
                                                     </div>
                                                     <div id="existingStudentSelect{{ $job->id }}" style="display: none; margin-top: 10px;">
@@ -169,7 +163,7 @@
                                                                 <select id="studentSelect{{ $job->id }}" data-choices id="choices-single-default"
                                                                         class="form-control"
                                                                         onchange="updateStartButton({{ $job->id }})">
-                                                                    <option value="">-- Select Applicant --</option>
+                                                                    <option value="">-- Select Record --</option>
                                                                     @foreach($applicants as $applicant)
                                                                         <option value="{{ $applicant->id }}">{{ $applicant->name }} ({{ $applicant->email }})</option>
                                                                     @endforeach
@@ -296,7 +290,7 @@
                 return;
             }
  
-            const url = "{{ route('agent_application_existing_applicant', ['job_id' => '__job_id__', 'applicant_id' => '__applicant_id__']) }}"
+            const url = "{{ route('applicant_application_existing_record', ['job_id' => '__job_id__', 'applicant_id' => '__applicant_id__']) }}"
             .replace('__job_id__', courseId) 
             .replace('__applicant_id__', selectedStudentId);
 
@@ -309,28 +303,5 @@
         $(document).ready(function() {
             $('#dataTable').DataTable();
         });
-    </script>
-    <script>
-        function confirmDelete(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                customClass: {
-                    confirmButton: 'btn btn-primary',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const form = document.getElementById(`delete-course-form-${id}`);
-                    form.action = "{{ route('delete_job', '') }}/" + id;
-                    form.submit();
-                }
-            });
-        }
     </script>
 @endpush

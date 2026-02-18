@@ -169,33 +169,33 @@
         }
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
 
-        document.querySelectorAll('.timer').forEach(el => {
-            let end = new Date(el.dataset.time).getTime();
+            document.querySelectorAll('.timer').forEach(el => {
+                let end = new Date(el.dataset.time).getTime();
 
-            function update() {
-                let now = new Date().getTime();
-                let diff = end - now;
+                function update() {
+                    let now = new Date().getTime();
+                    let diff = end - now;
 
-                if (diff <= 0) {
-                    el.innerText = "Expired";
-                    return;
+                    if (diff <= 0) {
+                        el.innerText = "Expired";
+                        return;
+                    }
+
+                    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    let minutes = Math.floor((diff / (1000 * 60)) % 60);
+                    let seconds = Math.floor((diff / 1000) % 60);
+
+                    el.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
                 }
 
-                let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                let minutes = Math.floor((diff / (1000 * 60)) % 60);
-                let seconds = Math.floor((diff / 1000) % 60);
+                update();
+                setInterval(update, 1000);
+            });
 
-                el.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }
-
-            update();
-            setInterval(update, 1000);
         });
-
-    });
-</script>
+    </script>
 
 @endpush
