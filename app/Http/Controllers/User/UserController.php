@@ -302,14 +302,14 @@ class UserController extends Controller
         }
     }
     
-    // student user profile view
-    public function studentUserProfile()
+    // applicant user profile view
+    public function applicantUserProfile()
     {
-        $studentUser  = auth()->user();
-        return view('user.student-user-profile', compact('studentUser')); 
+        $applicantUser  = auth()->user();
+        return view('user.applicant-user-profile', compact('applicantUser')); 
     }
     
-    public function updateStudentProfile(Request $request)
+    public function updateApplicantProfile(Request $request)
     {
         $request->validate([
             'name'                => 'required|string|max:255',
@@ -358,15 +358,15 @@ class UserController extends Controller
         }
     }
 
-    // student change password view
-    public function studentChangePassword()
+    // applicant change password view
+    public function applicantChangePassword()
     {
         $user  = auth()->user();
-        return view('user.student-change-password', compact('user'));
+        return view('user.applicant-change-password', compact('user'));
     }
 
      // Update student password
-    public function updateStudentPassword(Request $request)
+    public function updateApplicantPassword(Request $request)
     {
         $request->validate([
             'current_password'      => 'required|string',

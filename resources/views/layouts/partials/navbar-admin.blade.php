@@ -9,7 +9,7 @@
             </span>
 
             <span class="logo-dark">
-                <span class="logo-lg"><img src="{{asset('back-end/assets/images/logo-dark.png')}}" alt="dark logo"></span>
+                {{-- <span class="logo-lg"><img src="{{asset('back-end/assets/images/logo-dark.png')}}" alt="dark logo"></span> --}}
                 <span class="logo-sm"><img src="{{asset('back-end/assets/images/logo-sm.png')}}" alt="small logo"></span>
             </span>
         </a>

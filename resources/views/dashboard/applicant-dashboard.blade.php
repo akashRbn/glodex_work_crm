@@ -32,13 +32,117 @@
                                                 <i class="ti ti-flag-heart"></i>
                                             </span>
                                         </div>
-                                        <h3 class="mb-0 fw-bold">0</h3>
+                                        <h3 class="mb-0 fw-bold">{{ $applicantTotalCountries ?? 0 }}</h3>
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- end col -->
-                    </div><!-- end row -->
-
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Total Company</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-universe"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $applicantTotalCompanies ?? 0 }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Total Job</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-book"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $applicantTotalJobs ?? 0 }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Total Application</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-brand-redux"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $aplicantTotalApplications ?? 0}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">In Progress</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-users-group"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $applicantInProgressApplication ?? 0 }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Applied</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-file-check"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $applicantAppliedApplication ?? 0 }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Visa Granted</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-circle-check"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $applicantTotalVisaGranted ?? 0}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Visa Rejected</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-pentagon-x"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $applicantTotalVisaRejected ?? 0}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {{-- <div class="row">
                         <div class="col-xxl-8">
                             <div class="card">
@@ -295,7 +399,6 @@
                         </div>
                         <h5 class="fs-14 text-center text-muted mt-2">Light</h5>
                     </div>
-
                     <div class="col-3">
                         <div class="form-check card-radio">
                             <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-dark" value="dark">
@@ -534,11 +637,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="d-flex align-items-center gap-2 px-3 py-2 offcanvas-header border-top border-dashed">
-            <button type="button" class="btn w-50 btn-soft-danger" id="reset-layout">Reset</button>
-            <button type="button" class="btn w-50 btn-soft-info">Buy Now</button>
-        </div>
-
     </div>
 @endsection

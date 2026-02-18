@@ -9,9 +9,9 @@
                     <div class="card">
                         <div
                             class="card-header border-bottom border-dashed d-flex align-items-center justify-content-between">
-                            <h4 class="header-title mb-0">Student Change Password</h4>
+                            <h4 class="header-title mb-0">Applicant Change Password</h4>
                             <div class="d-flex">
-                                <a href="{{ route('student_dashboard') }}" class="btn btn-sm btn-secondary me-2">
+                                <a href="{{ route('applicant_dashboard') }}" class="btn btn-sm btn-secondary me-2">
                                     <i class="ti ti-arrow-back-up"
                                         style="margin-right:3px; font-size: 1.3rem; margin-bottom: 1px"></i>
                                     Go Back
@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('update_student_password') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update_applicant_password') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-3 mb-3">

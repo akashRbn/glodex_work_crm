@@ -9,7 +9,7 @@
             </span>
 
             <span class="logo-dark">
-                <span class="logo-lg"><img src="{{asset('back-end/assets/images/logo-dark.png')}}" alt="dark logo"></span>
+                {{-- <span class="logo-lg"><img src="{{asset('back-end/assets/images/logo-dark.png')}}" alt="dark logo"></span> --}}
                 <span class="logo-sm"><img src="{{asset('back-end/assets/images/logo-sm.png')}}" alt="small logo"></span>
             </span>
         </a>
@@ -231,7 +231,7 @@
                     </div>
 
                     <!-- item-->
-                    <a href="{{ route('student_user_profile') }}" class="dropdown-item">
+                    <a href="{{ route('applicant_user_profile') }}" class="dropdown-item">
                         <i class="ti ti-user-hexagon me-1 fs-17 align-middle"></i>
                         <span class="align-middle">My Account</span>
                     </a>
@@ -239,7 +239,7 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <a href="{{ route('student_change_password') }}" class="dropdown-item">
+                    <a href="{{ route('applicant_change_password') }}" class="dropdown-item">
                         <i class="ti ti-key me-1 fs-17 align-middle"></i>
                         <span class="align-middle">Change Password</span>
                     </a>

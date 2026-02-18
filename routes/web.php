@@ -214,10 +214,10 @@ Route::prefix('applicant')->middleware(['applicant'])->group(function () {
 
     // route for agent user 
     Route::controller(UserController::class)->group(function () {
-        Route::get('/student-user-profile', 'studentUserProfile')->name('student_user_profile');
-        Route::post('/update-student-profile', 'updateStudentProfile')->name('update_student_profile');
-        Route::get('/student-change-password', 'studentChangePassword')->name('student_change_password');
-        Route::post('/update-student-password', 'updateStudentPassword')->name('update_student_password');
+        Route::get('/applicant-user-profile', 'applicantUserProfile')->name('applicant_user_profile');
+        Route::post('/update-applicant-profile', 'updateApplicantProfile')->name('update_applicant_profile');
+        Route::get('/applicant-change-password', 'applicantChangePassword')->name('applicant_change_password');
+        Route::post('/update-applicant-password', 'updateApplicantPassword')->name('update_applicant_password');
     });
 
     // Route for applicant country
@@ -254,13 +254,6 @@ Route::prefix('applicant')->middleware(['applicant'])->group(function () {
         Route::get('/applicant-application-existing-record/{job_id}/{applicant_id}', 'applicantApplicationEixRecord')->name('applicant_application_existing_record');
         Route::post('/save-applicant-application-exit-record', 'saveApplicantApplicationEixRecord')->name('save_applicant_application_exit_record');
     });
-
-    // Route::controller(StudentApplicationController::class)->group(function () {
-    //     Route::get('/student-application-list', 'studentApplicationList')->name('student_application_list');
-    //     Route::get('/student-application-existing-record/{course_id}/{student_id}', 'studentApplicationEixRecord')->name('student_application_existing_record');
-    //     Route::post('/save-student-application-exit-record', 'saveStudentApplicationEixRecord')->name('save_student_application_exit_record');
-    // });
-
 });
 
 
