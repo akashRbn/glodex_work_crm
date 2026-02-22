@@ -33,6 +33,7 @@
                                             <th>Phone</th>
                                             <th>Email</th>
                                             <th>Gender</th>
+                                            <th>Assign Lawyer</th>
                                             <th>Created By</th>
                                         </tr>
                                     </thead>
@@ -78,6 +79,7 @@
                                                         <span class="badge bg-secondary">Female</span>
                                                     @endif
                                                 </td>
+                                                <td>{{ $applicant->assignedLawyer->name ?? 'Not Assigned' }}</td>
                                                 <td>{{ $applicant->createdBy->name ?? 'Not Added' }}</td>
                                             </tr>
                                         @endforeach

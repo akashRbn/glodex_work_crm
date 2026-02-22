@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '|Add New Company')
+@section('title', '| Add New Company')
 @section('content')
     <!-- Begin page -->
     <div class="wrapper">

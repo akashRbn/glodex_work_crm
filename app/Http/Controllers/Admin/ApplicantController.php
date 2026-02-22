@@ -20,9 +20,11 @@ class ApplicantController extends Controller
     //  function to show my applicant list
     public function myApplicantList()
     {
-        $applicants = Applicant::whereHas('createdBy', function ($query) {
-            $query->whereIn('user_type', [1, 3]);
-        })->get();
+        $applicants = Applicant::with('assignedLawyer')
+            ->whereHas('createdBy', function ($query) {
+                $query->whereIn('user_type', [1, 3]);
+            })
+            ->get();
 
         return view('admin.applicant.my-applicant-list', compact('applicants'));
     }
@@ -32,7 +34,7 @@ class ApplicantController extends Controller
     {
         $authUser = auth()->user();
 
-        $applicants = Applicant::with('createdBy')
+        $applicants = Applicant::with(['createdBy','assignedLawyer'])
             ->whereHas('createdBy', function ($query) use ($authUser) {
                 $query->where('user_type', 2); // Only agents
 
@@ -50,7 +52,8 @@ class ApplicantController extends Controller
     // function to show add new applicant page
     public function addNewApplicant()
     {
-        return view('admin.applicant.add-new-applicant');
+        $users = User::where('user_type', 4)->where('user_status', 2)->get();    
+        return view('admin.applicant.add-new-applicant', compact('users'));
     }
 
     // Function to save student
@@ -102,6 +105,7 @@ class ApplicantController extends Controller
         $applicantInfo->mothers_name                = $request->mothers_name;
         $applicantInfo->dob                         = $request->dob;
         $applicantInfo->passport_no                 = $request->passport_no;
+        $applicantInfo->assigned_to_lawyer          = $request->assigned_to_lawyer;
         $applicantInfo->moi                         = $request->moi;
         $applicantInfo->notes                       = $request->notes;
         $applicantInfo->created_by                  = Auth::id();
@@ -159,7 +163,7 @@ class ApplicantController extends Controller
         return redirect()->back();
         }catch (\Exception $e) {
             DB::rollBack();
-              dd($e);
+            //   dd($e);
             Alert::error('Error', 'Failed to save applicant, Try Again');
             return redirect()->back();
         }
@@ -169,9 +173,10 @@ class ApplicantController extends Controller
     public function editApplicant($id)
     {
         $applicant = Applicant::findOrFail($id);
+        $users = User::where('user_type', 4)->where('user_status', 2)->get();
         $englishTests = json_decode($applicant->english_proficiency, true) ?? [];
         $academicQualifications = json_decode($applicant->academic_qualifications, true) ?? []; // ← Add this line
-        return view('admin.applicant.edit-applicant', compact('applicant', 'englishTests', 'academicQualifications'));
+        return view('admin.applicant.edit-applicant', compact('applicant', 'englishTests', 'academicQualifications','users'));
     }
 
     // Function to update applicant
@@ -200,6 +205,7 @@ class ApplicantController extends Controller
         $updateApplicant->mothers_name       = $request->mothers_name;
         $updateApplicant->dob                = $request->dob;
         $updateApplicant->passport_no        = $request->passport_no;
+        $updateApplicant->assigned_to_lawyer = $request->assigned_to_lawyer;
         $updateApplicant->moi                = $request->moi;
         $updateApplicant->notes              = $request->notes;
 

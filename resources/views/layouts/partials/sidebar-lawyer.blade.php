@@ -39,8 +39,8 @@
         </li>
         <li class="side-nav-item">
             <a href="#" class="side-nav-link">
-                <span class="menu-icon"><i class="ti ti-flag-heart"></i></span>
-                <span class="menu-text">Countries</span>
+                <span class="menu-icon"><i class="ti ti-brand-appstore"></i></span>
+                <span class="menu-text">Applicant</span>
             </a>
         </li>
     </ul>

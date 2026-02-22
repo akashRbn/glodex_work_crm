@@ -8,17 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Applicant extends Model
 {
-    use SoftDeletes;
-    protected $guarded = [];
-    public $timestamps = true;
+  use SoftDeletes;
+  protected $guarded = [];
+  public $timestamps = true;
 
-    public function applicantfiles()
-    {
-      return $this->hasMany(ApplicantFile::class, 'applicant_id');
-    }
+  public function applicantfiles()
+  {
+    return $this->hasMany(ApplicantFile::class, 'applicant_id');
+  }
 
-    public function createdBy()
-    {
-      return $this->belongsTo(User::class, 'created_by');
-    }
+  public function createdBy()
+  {
+    return $this->belongsTo(User::class, 'created_by');
+  }
+
+  public function assignedLawyer()
+  {
+    return $this->belongsTo(User::class, 'assigned_to_lawyer');
+  }
 }

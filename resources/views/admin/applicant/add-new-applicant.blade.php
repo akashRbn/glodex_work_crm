@@ -87,6 +87,20 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="lawyer_id" class="form-label">Assign Lawyer<span class="text-danger">*</span></label>
+                                        <select class="form-control"  id="assigned_to_lawyer" name="assigned_to_lawyer" data-choices id="choices-single-default" required>
+                                                <option value="">--Select Lawyer--</option>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}" {{ old('assigned_to_lawyer') == $user->id ? 'selected' : '' }}>
+                                                       {{ $user->name }}
+                                                    </option>
+                                                @endforeach
+                                        </select>
+                                        @error('assigned_to_lawyer')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <h6 class="badge bg-primary">English Proficiency</h6>
                                 <div class="row">
@@ -190,7 +204,7 @@
                                                 </div>
                                             </div>
                                             @error('passport_copy')
-                                            <div class="text-danger">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>   
                                             @enderror 
                                         </div>
                                     </div>
