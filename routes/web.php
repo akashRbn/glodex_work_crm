@@ -29,6 +29,7 @@ use App\Http\Controllers\Applicant\ApplicantDashboardController;
 use App\Http\Controllers\Applicant\ApplicantJobController;
 use App\Http\Controllers\Applicant\ApplicantRecordController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Lawyer\LawyerApplicantController;
 use App\Http\Controllers\Lawyer\LawyerDashboardController;
 use App\Http\Controllers\Student\StudentApplicationController;
 use App\Http\Controllers\Student\StudentCountryController;
@@ -260,6 +261,11 @@ Route::prefix('applicant')->middleware(['applicant'])->group(function () {
 // route for lawyer
 Route::prefix('lawyer')->middleware(['lawyer'])->group(function () {
     Route::get('/lawyer-dashboard', [LawyerDashboardController::class, 'lawyerDashboard'])->name('lawyer_dashboard');
+
+    Route::controller(LawyerApplicantController::class)->group(function () {
+        Route::get('/lawyer-applicant-list', 'lawyerApplicantList')->name('lawyer_applicant_list');
+        Route::get('/edit-lawyer-applicant/{id}', 'editLawyerApplicant')->name('edit_lawyer_applicant');
+    });
 });
 
 

@@ -180,7 +180,7 @@ class ApplicantController extends Controller
     }
 
     // Function to update applicant
-     public function updateApplicant(Request $request, $id)
+    public function updateApplicant(Request $request, $id)
     {
         $request->validate([
             'name'        => 'required|string|max:50',

@@ -38,7 +38,7 @@
             </a>
         </li>
         <li class="side-nav-item">
-            <a href="#" class="side-nav-link">
+            <a href="{{ route('lawyer_applicant_list') }}" class="side-nav-link">
                 <span class="menu-icon"><i class="ti ti-brand-appstore"></i></span>
                 <span class="menu-text">Applicant</span>
             </a>
