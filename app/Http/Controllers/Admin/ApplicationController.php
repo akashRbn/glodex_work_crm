@@ -573,7 +573,7 @@ class ApplicationController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
+            // dd($e);
             Alert::error('Error', 'Failed to update application, Try Again.');
             return redirect()->back()->withInput();
         }

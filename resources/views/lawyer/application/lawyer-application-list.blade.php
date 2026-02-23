@@ -11,20 +11,12 @@
                 <div class="col-xl-12">
                     <div class="card">
                        <div class="card-header border-bottom border-dashed d-flex align-items-center justify-content-between">
-                            <h4 class="header-title mb-0">My Applications</h4>
+                            <h4 class="header-title mb-0">Applications</h4>
                             <div class="d-flex">
-                                <a href="{{ route('agent_dashboard') }}" class="btn btn-sm btn-secondary me-2">
+                                <a href="{{ route('lawyer_dashboard') }}" class="btn btn-sm btn-secondary me-2">
                                     <i class="ti ti-arrow-back-up" style="margin-right:3px; font-size: 1.3rem; margin-bottom: 1px"></i>
                                     Go Back 
                                 </a>
-                                <a href="{{ route('agent_job_list') }}" class="btn btn-sm btn-primary me-2">
-                                    <i class="ti ti-plus" style="margin-right:3px; font-size: 1.3rem; margin-bottom: 1px"></i>
-                                    Add New
-                                </a>
-                                {{-- <a href="{{ route('agent_job_list') }}" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#centermodal">
-                                    <i class="ti ti-plus" style="margin-right:3px; font-size: 1.3rem; margin-bottom: 1px"></i>
-                                    Add New
-                                </a> --}}
                             </div>
                         </div>
                         <div class="card-body">
@@ -60,7 +52,7 @@
                                                         <div class="dropdown-menu">
                                                             <li>
                                                                 <a class="dropdown-item d-flex align-items-center gap-1" href="{{ $application->applicant
-                                                                    ? route('agent_edit_application', [
+                                                                    ? route('lawyer_edit_application', [
                                                                         'applicant_id' => $application->applicant->id,
                                                                         'job_id' => $application->job->id,
                                                                         'id' => $application->id,

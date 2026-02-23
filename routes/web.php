@@ -30,6 +30,7 @@ use App\Http\Controllers\Applicant\ApplicantJobController;
 use App\Http\Controllers\Applicant\ApplicantRecordController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Lawyer\LawyerApplicantController;
+use App\Http\Controllers\Lawyer\LawyerApplicationController;
 use App\Http\Controllers\Lawyer\LawyerDashboardController;
 use App\Http\Controllers\Student\StudentApplicationController;
 use App\Http\Controllers\Student\StudentCountryController;
@@ -265,6 +266,13 @@ Route::prefix('lawyer')->middleware(['lawyer'])->group(function () {
     Route::controller(LawyerApplicantController::class)->group(function () {
         Route::get('/lawyer-applicant-list', 'lawyerApplicantList')->name('lawyer_applicant_list');
         Route::get('/edit-lawyer-applicant/{id}', 'editLawyerApplicant')->name('edit_lawyer_applicant');
+        Route::post('/update-lawyer-applicant/{id}', 'updateLawyerApplicant')->name('update_lawyer_applicant');
+    });
+
+    Route::controller(LawyerApplicationController::class)->group(function () {
+        Route::get('/lawyer-application-list', 'lawyerApplicationList')->name('lawyer_application_list');
+        Route::get('/lawyer-edit-application/{id}/{job_id}/{applicant_id}', 'lawyerEditApplication')->name('lawyer_edit_application');
+        Route::post('/lawyer-update-application/{id}', 'lawyerUpdateApplication')->name('lawyer_update_application');
     });
 });
 

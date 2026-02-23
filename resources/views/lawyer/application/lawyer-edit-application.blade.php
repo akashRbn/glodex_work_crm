@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '| Edit Applicant')
+@section('title', '| Edit Appication')
 @section('content')
     <!-- Begin page -->
     <div class="wrapper">
@@ -9,9 +9,9 @@
                     <div class="card">
                         <div
                             class="card-header border-bottom border-dashed d-flex align-items-center justify-content-between">
-                            <h4 class="header-title mb-0">Edit Applicant</h4>
+                            <h4 class="header-title mb-0">Edit Application</h4>
                             <div class="d-flex">
-                                <a href="{{ route('lawyer_applicant_list') }}" class="btn btn-sm btn-secondary me-2">
+                                <a href="{{ route('lawyer_application_list') }}" class="btn btn-sm btn-secondary me-2">
                                     <i class="ti ti-arrow-back-up"
                                         style="margin-right:3px; font-size: 1.3rem; margin-bottom: 1px"></i>
                                     Go Back
@@ -19,8 +19,11 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form  action="{{ route('update_lawyer_applicant', $applicant->id) }}" method="post" enctype="multipart/form-data">
+                            <form  action="{{ route('lawyer_update_application', $application->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="job_id" value="{{ $job->id }}">
+                                <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
+
                                 <h6 class="badge bg-primary">General Information</h6>
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
@@ -293,7 +296,51 @@
                                 </div>
                                 <h6 class="badge bg-primary">Documents Upload</h6>
                                 <div class="row">
-                                    <h5>( Add your passport copy, All Academic Certificate & Trasnscript Record, English Proficiency and Others, name your file like firstname_lastname_filename)</h5>            
+                                    <h5>( Add your passport copy, if you have Academic Certificate & Trasnscript Record, English Proficiency and Others, name your file like firstname_lastname_filename)</h5>            
+                                    <div class="col-md-4 mt-2">
+                                        <div class="">
+                                            <label for="defaultSelect" class="form-label">Application Satus</label>
+                                            <select id="defaultSelect" name="status" class="form-select">
+                                                @foreach($applicationStatus as $status)
+                                                    <option value="{{ $status->status_order }}" {{ $application->status == $status->status_order ? 'selected' : '' }}>
+                                                        {{ $status->status_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('status')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-4 mt-2">
+                                        <div>
+                                            <label for="intakeYear" class="form-label">Going Year<span
+                                                class="text-danger">*</span>:</label>
+                                            <input type="month" name="going_year" class="form-control" placeholder="YYYY"
+                                                id="intakeYear" value="{{ old('going_year', $application->going_year) }}" required/>
+                                        </div>
+                                        @error('going_year')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-4 mt-2">
+                                        <label class="form-label">Application Expiry Countdown<span class="text-danger">*</span>:</label>
+                                        <div class="row g-2">
+                                            <div class="col-3">
+                                                <input type="number" name="days" class="form-control" placeholder="Days"
+                                                    value="{{ old('days', $application->days ?? 0) }}" min="0" required>
+                                            </div>
+                                            <div class="col-3">
+                                                <input type="number" name="hours" class="form-control" placeholder="Hours"
+                                                    value="{{ old('hours', $application->hours ?? 0) }}" min="0" max="23" required>
+                                            </div>
+                                            <div class="col-3">
+                                                <input type="number" name="minutes" class="form-control" placeholder="Minutes"
+                                                    value="{{ old('minutes', $application->minutes ?? 0) }}" min="0" max="59" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 my-1"></div>      
                                     @foreach($applicant->applicantfiles as $single)
                                         <div class="col-md-3 mt-2 mb-6">
                                             <label for="documentPassport" class="form-label" style="color: #FF6D43">
@@ -430,52 +477,52 @@
     </script>
 
 
-<script type="text/javascript">
-    $(document).ready(function() {
-      var counter = 2; // Start from the second input (since the first one is already present)
-      $('#del_file').hide(); // Hide delete button initially
-  
-      // Add new file input when the add button is clicked
-      $('#add_file').click(function() {
-        // Create new row with the same structure
-        var newRow = `
-        <div class="row" id="f${counter}">
-          <div class="col-md-4">
-            <div class="input-group mb-3">
-              <label class="input-group-text" for="inputGroupFile01">File Name</label>
-              <input type="text" name="filename[]" class="form-control" required>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        var counter = 2; // Start from the second input (since the first one is already present)
+        $('#del_file').hide(); // Hide delete button initially
+    
+        // Add new file input when the add button is clicked
+        $('#add_file').click(function() {
+            // Create new row with the same structure
+            var newRow = `
+            <div class="row" id="f${counter}">
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">File Name</label>
+                <input type="text" name="filename[]" class="form-control" required>
+                </div>
             </div>
-          </div>
-          <div class="col-md-8">
-            <div class="input-group mb-3">
-              <input type="file" name="applicantfiles[]" class="form-control" required>
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                <input type="file" name="applicantfiles[]" class="form-control" required>
+                </div>
             </div>
-          </div>
-        </div>
-      `;
-  
-        // Append the new row above the file tools section
-        $('#file_inputs').append(newRow);
-  
-        // Show the delete button once we have more than one input
-        $('#del_file').fadeIn(0);
-  
-        counter++;
-      });
-  
-      // Delete the last file input when the delete button is clicked
-      $('#del_file').click(function() {
-        if (counter > 2) { // Ensure there is at least one input field left
-          counter--;
-          $('#f' + counter).remove();
-        }
-  
-        // Hide delete button if only one input is left
-        if (counter === 2) {
-          $('#del_file').fadeOut(0);
-        }
-      });
-    });
-</script>
+            </div>
+        `;
+    
+            // Append the new row above the file tools section
+            $('#file_inputs').append(newRow);
+    
+            // Show the delete button once we have more than one input
+            $('#del_file').fadeIn(0);
+    
+            counter++;
+        });
+    
+        // Delete the last file input when the delete button is clicked
+        $('#del_file').click(function() {
+            if (counter > 2) { // Ensure there is at least one input field left
+            counter--;
+            $('#f' + counter).remove();
+            }
+    
+            // Hide delete button if only one input is left
+            if (counter === 2) {
+            $('#del_file').fadeOut(0);
+            }
+        });
+        });
+    </script>
 
 @endpush
