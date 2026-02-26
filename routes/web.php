@@ -263,6 +263,13 @@ Route::prefix('applicant')->middleware(['applicant'])->group(function () {
 Route::prefix('lawyer')->middleware(['lawyer'])->group(function () {
     Route::get('/lawyer-dashboard', [LawyerDashboardController::class, 'lawyerDashboard'])->name('lawyer_dashboard');
 
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/lawyer-user-profile', 'lawyerUserProfile')->name('lawyer_user_profile');
+        Route::post('/update-lawyer-profile', 'updateLawyerProfile')->name('update_lawyer_profile');
+        Route::get('/lawyer-change-password', 'lawyerChangePassword')->name('lawyer_change_password');
+        Route::post('/update-lawyer-password', 'updateLawyerPassword')->name('update_lawyer_password');
+    });
+
     Route::controller(LawyerApplicantController::class)->group(function () {
         Route::get('/lawyer-applicant-list', 'lawyerApplicantList')->name('lawyer_applicant_list');
         Route::get('/edit-lawyer-applicant/{id}', 'editLawyerApplicant')->name('edit_lawyer_applicant');

@@ -231,7 +231,7 @@
                     </div>
 
                     <!-- item-->
-                    <a href="#" class="dropdown-item">
+                    <a href="{{ route('lawyer_user_profile') }}" class="dropdown-item">
                         <i class="ti ti-user-hexagon me-1 fs-17 align-middle"></i>
                         <span class="align-middle">My Account</span>
                     </a>
@@ -239,7 +239,7 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <a href="#" class="dropdown-item">
+                    <a href="{{ route('lawyer_change_password') }}" class="dropdown-item">
                         <i class="ti ti-key me-1 fs-17 align-middle"></i>
                         <span class="align-middle">Change Password</span>
                     </a>

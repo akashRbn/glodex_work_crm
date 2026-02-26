@@ -26,19 +26,64 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Total Country</h5>
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Total Applicant</h5>
                                     <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
                                         <div class="user-img fs-42 flex-shrink-0">
                                             <span class="avatar-title text-bg-primary rounded-circle fs-22">
-                                                <i class="ti ti-flag-heart"></i>
+                                                <i class="ti ti-user-check"></i>
                                             </span>
                                         </div>
-                                        <h3 class="mb-0 fw-bold">0</h3>
+                                        <h3 class="mb-0 fw-bold">{{ $lawyerTotalApplicant ?? 0 }}</h3>
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- end col -->
-                    </div><!-- end row -->
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Total Application</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-user-check"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $lawyerTotalApplication ?? 0 }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Visa Granted</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-circle-check"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $lawyerVisaGranted ?? 0 }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">Visa Rejected</h5>
+                                    <div class="d-flex align-items-center justify-content-center gap-2 my-2 py-1">
+                                        <div class="user-img fs-42 flex-shrink-0">
+                                            <span class="avatar-title text-bg-primary rounded-circle fs-22">
+                                                <i class="ti ti-pentagon-x"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-0 fw-bold">{{ $lawyerVisaRejected ?? 0 }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     {{-- <div class="row">
                         <div class="col-xxl-8">

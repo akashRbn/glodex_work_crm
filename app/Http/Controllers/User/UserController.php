@@ -365,8 +365,103 @@ class UserController extends Controller
         return view('user.applicant-change-password', compact('user'));
     }
 
-     // Update student password
+    // Update applicant password
     public function updateApplicantPassword(Request $request)
+    {
+        $request->validate([
+            'current_password'      => 'required|string',
+            'new_password'          => 'required|string|min:8|confirmed',
+        ]);
+
+        if (!Hash::check($request->current_password, auth()->user()->password)) {
+            Alert::error('Error', 'The current password does not match our records.');
+            return redirect()->back();
+        }
+
+        DB::beginTransaction();
+        try {
+            $user = auth()->user();
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            DB::commit();
+
+            Alert::success('Success', 'Password updated successfully!');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Alert::error('Error', 'An error occurred while updating the password. Please try again.');
+            return redirect()->back();
+        }
+    }
+
+    // function to lawyer user profile view
+    public function lawyerUserProfile()
+    {
+        $lawyerUser  = auth()->user();
+        return view('user.lawyer-user-profile', compact('lawyerUser')); 
+    }
+
+    // function to update lawyer user profile
+     public function updateLawyerProfile(Request $request)
+    {
+        $request->validate([
+            'name'                => 'required|string|max:255',
+            'phone'               => 'required|string|max:20',
+            'email'               => 'required|email|max:255',
+            'dob'                 => 'required|date',
+            'marital_status'      => 'required',
+            'gender'              => 'required',
+            'address'             => 'required',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $user = auth()->user();
+            $user->name                = $request->name;
+            $user->phone               = $request->phone;
+            $user->email               = $request->email;
+            $user->dob                 = $request->dob;
+            $user->marital_status      = $request->marital_status;
+            $user->gender              = $request->gender;
+            $user->organization_name   = $request->organization_name;
+            $user->address             = $request->address;
+            $user->company_description = $request->company_description;
+            if ($request->hasFile('profile_photo')) {
+                if ($user->profile_photo) {
+                    $this->imageHandler->deleteImage($user->profile_photo);
+                }
+                $file = $request->file('profile_photo');
+                $filePath = $this->imageHandler->profilePhoto($file, 'profile_photo');
+                $user->profile_photo = $filePath;
+            }
+
+
+            // Save all updates
+            $user->save();
+
+            DB::commit();
+            alert()->success('Success', 'Profile updated successfully!');
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            alert()->error('Error', 'Something went wrong: ' . $e->getMessage());
+            return redirect()->back()->withInput();
+        }
+    }
+
+    // function to lawyer change password view
+    public function lawyerChangePassword()
+    {
+        $user  = auth()->user();
+        return view('user.lawyer-change-password', compact('user'));
+    }
+
+    // function to update lawyer change password
+    
+    public function updateLawyerPassword(Request $request)
     {
         $request->validate([
             'current_password'      => 'required|string',

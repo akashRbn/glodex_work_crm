@@ -10,7 +10,7 @@
                        <div class="card-header border-bottom border-dashed d-flex align-items-center justify-content-between">
                             <h4 class="header-title mb-0">Applicants</h4>
                             <div class="d-flex items-center gap-2">
-                                <a href="{{ route('my_applicant_list') }}" class="btn btn-sm glodex-blue-btn" id="addNewCountryBtn">
+                                <a href="{{ route('lawyer_applicant_list') }}" class="btn btn-sm glodex-blue-btn" id="addNewCountryBtn">
                                     <i class="ti ti-rotate me-2"></i>
                                     Refresh
                                 </a>
